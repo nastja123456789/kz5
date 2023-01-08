@@ -58,16 +58,36 @@
           </v-card>
         </v-col>
       </v-row>
+      <v-row>
+        <v-col>
+          <Bar :data="data" :options="options" />
+        </v-col>
+      </v-row>
     </div>
 </template>
 
 <script>
+import { Bar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "GetOriginal",
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    Bar
+  },
   data() {
     return {
-
+      data: {
+        labels: ['January', 'February', 'March'],
+        datasets: [{ data: [40, 20, 12] }]
+      },
+      options: {
+        responsive: true
+      }
     }
   }
 }

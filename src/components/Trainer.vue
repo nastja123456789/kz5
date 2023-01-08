@@ -86,13 +86,44 @@
     </div>
     </v-col>
   </v-row>
+    <v-row>
+      <v-col>
+        <Pie :data="chartData"
+             :options="chartOptions"
+        />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Pie } from 'vue-chartjs'
+ChartJS.register(ArcElement, Tooltip, Legend)
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Trainer"
+  name: "Trainer",
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    Pie
+  },
+  data() {
+    return {
+      chartData: {
+        labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+        datasets: [
+          {
+            backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+            data: [40, 20, 80, 10]
+          }
+        ]
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    }
+  }
 }
 </script>
 

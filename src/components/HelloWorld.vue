@@ -122,16 +122,17 @@
         <highcharts :options="chartOptions"></highcharts>
       </v-col>
     </v-row>
+
   </div>
 </template>
 
 <script>
 import {Chart} from "highcharts-vue";
-  export default {
+
+ export default {
     name: 'HelloWorld',
     components: {
-      // eslint-disable-next-line vue/no-unused-components
-      highcharts: Chart
+      highcharts: Chart,
     },
     data: () => ({
       alignments: [

@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div style="margin:24px;justify-content: space-between;">
     <div ><h1 style="text-align: center; color: #008000;">Правила дорожного движения</h1></div>
     <div >
@@ -40,12 +41,52 @@
         - отвлекать водителя от управления транспортным средством во время его движения;</h5>
     </div>
   </div>
+  <v-row>
+    <v-col>
+      <Radar
+          :data="chartData"
+          :options="chartOptions" />
+    </v-col>
+  </v-row>
+  </div>
 </template>
 
 <script>
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend
+} from 'chart.js'
+ChartJS.register(RadialLinearScale, Tooltip, Legend, PointElement, LineElement, Filler)
+import { Radar } from 'vue-chartjs'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Top10"
+  name: "Top10",
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    Radar,
+  },
+  data() {
+    return {
+      chartData: {
+        labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+        datasets: [
+          {
+            backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+            data: [40, 20, 80, 10]
+          }
+        ]
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    }
+  }
 }
 </script>
 
